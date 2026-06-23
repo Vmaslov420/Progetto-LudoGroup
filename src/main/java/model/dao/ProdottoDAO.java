@@ -130,4 +130,7 @@ public class ProdottoDAO {
         p.setEliminato(rs.getBoolean("eliminato"));
         return p;
     }
+
+
+
 }
