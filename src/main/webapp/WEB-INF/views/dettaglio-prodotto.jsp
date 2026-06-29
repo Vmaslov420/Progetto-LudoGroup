@@ -74,6 +74,29 @@
 <jsp:include page="/WEB-INF/views/fragments/header.jsp" />
 
 <div class="contenitore">
+
+    <%
+        String messaggioConferma = (String) session.getAttribute("messaggioConferma");
+
+        /*
+         * Dopo aver letto il messaggio, lo rimuoviamo dalla sessione
+         * così viene mostrato una sola volta.
+         */
+        if (messaggioConferma != null) {
+            session.removeAttribute("messaggioConferma");
+        }
+    %>
+
+    <%
+        if (messaggioConferma != null) {
+    %>
+    <div style="background: #e8f7e8; color: #1f6b1f; border: 1px solid #b7dfb7; padding: 12px; border-radius: 6px; margin-bottom: 20px;">
+        <%= messaggioConferma %>
+    </div>
+    <%
+        }
+    %>
+
     <h1>${prodotto.nome}</h1>
 
     <p>
@@ -105,6 +128,18 @@
     </p>
 
     <div class="azioni">
+
+        <!--
+            Form POST per aggiungere il prodotto al carrello.
+            Passiamo l'id del prodotto tramite un campo hidden.
+        -->
+        <form action="${pageContext.request.contextPath}/carrello/aggiungi" method="post" style="display: inline;">
+            <input type="hidden" name="id" value="${prodotto.id}">
+            <button type="submit" style="padding: 10px 16px; border-radius: 6px; border: 1px solid #2563eb; background: #2563eb; color: white; cursor: pointer;">
+                Aggiungi al carrello
+            </button>
+        </form>
+
         <a href="${pageContext.request.contextPath}/catalogo">Torna al catalogo</a>
     </div>
 </div>
