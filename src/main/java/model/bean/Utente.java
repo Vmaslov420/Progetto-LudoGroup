@@ -1,17 +1,20 @@
 package model.bean;
 
 public class Utente {
-    private int id;
+
+    private int idUtente;
     private String nome;
     private String cognome;
     private String email;
     private String passwordHash;
     private String nickname;
     private String telefono;
-    private String ruolo; // "cliente" o "admin"
+    private String ruolo;
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Utente() {}
+
+    public int getIdUtente() { return idUtente; }
+    public void setIdUtente(int idUtente) { this.idUtente = idUtente; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
