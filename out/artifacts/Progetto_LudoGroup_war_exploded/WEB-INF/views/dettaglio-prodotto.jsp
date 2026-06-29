@@ -1,8 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dettaglio prodotto</title>
     <style>
         body {
@@ -37,6 +40,8 @@
 
         .azioni {
             margin-top: 25px;
+            display: flex;
+            gap: 10px;
         }
 
         .azioni a {
@@ -52,18 +57,52 @@
         .azioni a:hover {
             background: #e9e9e9;
         }
+
+        .disponibile {
+            color: #1a7f37;
+            font-weight: bold;
+        }
+
+        .non-disponibile {
+            color: #b42318;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
+<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
+
 <div class="contenitore">
     <h1>${prodotto.nome}</h1>
 
-    <p><strong>Categoria:</strong> ${prodotto.nomeCategoria}</p>
+    <p>
+        <strong>Categoria:</strong>
+        <c:choose>
+            <c:when test="${not empty prodotto.nomeCategoria}">
+                ${prodotto.nomeCategoria}
+            </c:when>
+            <c:otherwise>
+                -
+            </c:otherwise>
+        </c:choose>
+    </p>
+
     <p><strong>Descrizione:</strong> ${prodotto.descrizione}</p>
     <p class="prezzo">€ ${prodotto.prezzo}</p>
     <p><strong>IVA:</strong> ${prodotto.iva}%</p>
-    <p><strong>Disponibilità:</strong> ${prodotto.stock}</p>
+
+    <p>
+        <strong>Disponibilità:</strong>
+        <c:choose>
+            <c:when test="${prodotto.stock > 0}">
+                <span class="disponibile">Disponibile (${prodotto.stock} pezzi)</span>
+            </c:when>
+            <c:otherwise>
+                <span class="non-disponibile">Non disponibile</span>
+            </c:otherwise>
+        </c:choose>
+    </p>
 
     <div class="azioni">
         <a href="${pageContext.request.contextPath}/catalogo">Torna al catalogo</a>

@@ -2,52 +2,69 @@
 <%@ page import="model.bean.Utente" %>
 
 <%
-    // Recupera dalla sessione l'attributo "utente"
-    // Questo attributo viene salvato nel LoginServlet dopo il login riuscito:
-    // session.setAttribute("utente", utente);
-    //
-    // Il cast (Utente) serve perché getAttribute() restituisce Object.
     Utente utenteLoggato = (Utente) session.getAttribute("utente");
+
+    /*
+     * true solo se:
+     * - esiste un utente loggato
+     * - il ruolo non è null
+     * - il ruolo vale "admin"
+     */
+    boolean admin = utenteLoggato != null
+            && utenteLoggato.getRuolo() != null
+            && "admin".equalsIgnoreCase(utenteLoggato.getRuolo());
 %>
 
 <header style="padding: 15px 30px; background: #ffffff; border-bottom: 1px solid #ddd;">
 
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
 
-        <!-- Logo / nome sito -->
-        <!-- pageContext.request.contextPath serve a costruire URL corretti
-             in base al nome del progetto deployato su Tomcat -->
         <a href="${pageContext.request.contextPath}/"
-           style="text-decoration: none; color: #333; font-size: 20px; font-weight: bold;">
-            TechHeaven
+           style="text-decoration: none; color: #333; font-size: 22px; font-weight: bold;">
+            LudoGroup
         </a>
 
-        <!-- Menu di navigazione -->
-        <nav style="display: flex; gap: 15px; align-items: center;">
+        <nav style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
 
-            <!-- Link sempre visibile -->
             <a href="${pageContext.request.contextPath}/"
                style="text-decoration: none; color: #333;">
                 Home
             </a>
 
+            <a href="${pageContext.request.contextPath}/catalogo"
+               style="text-decoration: none; color: #333;">
+                Catalogo
+            </a>
+
             <%
-                // Se esiste un utente in sessione, significa che il login è stato effettuato
                 if (utenteLoggato != null) {
             %>
 
-            <!-- Link visibili solo all'utente autenticato -->
             <a href="${pageContext.request.contextPath}/profilo"
                style="text-decoration: none; color: #333;">
                 Profilo
             </a>
 
-            <!-- Messaggio di benvenuto con nickname dell'utente -->
-            <span style="color: #333;">
-                    Ciao, <%= utenteLoggato.getNickname() %>
-                </span>
+            <%
+                /*
+                 * Questo link compare SOLO agli admin.
+                 */
+                if (admin) {
+            %>
+            <a href="${pageContext.request.contextPath}/admin/prodotti"
+               style="text-decoration: none; color: #7b1fa2; font-weight: bold;">
+                Area Admin
+            </a>
+            <%
+                }
+            %>
 
-            <!-- Link di logout -->
+            <span style="color: #333;">
+                Ciao, <%= utenteLoggato.getNickname() %>
+            </span>
+
+
+
             <a href="${pageContext.request.contextPath}/logout"
                style="text-decoration: none; color: #c62828;">
                 Logout
@@ -55,11 +72,8 @@
 
             <%
             } else {
-                // Se non esiste nessun utente in sessione,
-                // mostro i link per autenticarsi o registrarsi
             %>
 
-            <!-- Link visibili solo a chi NON è autenticato -->
             <a href="${pageContext.request.contextPath}/login"
                style="text-decoration: none; color: #007bff;">
                 Login
