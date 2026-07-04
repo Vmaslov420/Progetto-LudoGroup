@@ -1,0 +1,290 @@
+/* ---- STILI DELL'HEADER ---- */
+
+.main-header {
+    padding: 15px 30px; 
+    background: #ffffff; 
+    border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.logo-site {
+    text-decoration: none; 
+    color: #333; 
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex; 
+    gap: 15px; 
+    align-items: center;
+}
+
+/* Stile di base per i link del menu */
+.nav-link {
+    text-decoration: none; 
+    color: #333;
+}
+
+/* Link per Login e Registrati */
+.nav-link-primary {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Link di Logout */
+.nav-link-logout {
+    text-decoration: none;
+    color: #c62828;
+}
+
+.welcome-msg {
+    color: #333;
+}
+
+
+/* --- STILI DELLA PAGINA DETTAGLIO-PRODOTTO ---*/
+
+
+.prodotto-body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f7f7f7;
+}
+
+/* Modella il box bianco centrale */
+.contenitore-prodotto {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+/* Gestisce lo spazio sotto il titolo principale della pagina (nome prodotto) */
+.prodotto-titolo {
+    margin-bottom: 20px;
+}
+
+
+.prodotto-info {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+
+.prodotto-prezzo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a7f37;
+    margin: 10px 0;
+}
+
+/* Crea uno spazio vuoto sopra la sezione dedicata ai pulsanti/link */
+.prodotto-azioni {
+    margin-top: 25px;
+}
+
+/* Link di navigazione */
+.prodotto-azioni a {
+    display: inline-block;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background: #f5f5f5;
+    color: #000;
+}
+
+
+.prodotto-azioni a:hover {
+    background: #e9e9e9;
+}
+
+/* --- STILI DELLA PAGINA CATALOGO --- */
+
+
+.catalogo-titolo {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+.catalogo-info {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Struttura della tabella del catalogo */
+.catalogo-tabella {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse; /* Unisce i bordi delle celle per evitare doppi bordi */
+    font-family: Arial, sans-serif;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+/* Stile delle intestazioni della tabella (la prima riga scura) */
+.catalogo-tabella th {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Stile delle celle di contenuto */
+.catalogo-tabella td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd; /* Linea grigia di separazione tra i prodotti */
+    color: #333;
+}
+
+/* Evidenzia la riga del prodotto quando ci passi sopra */
+.catalogo-tabella tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Link "Vedi dettaglio" trasformato in un piccolo bottone blu */
+.btn-dettaglio {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-dettaglio:hover {
+    background-color: #0056b3;
+}
+
+/* --- STILI DELLA PAGINA DI LOGIN --- */
+
+
+.login-body * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+
+.login-body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 20px;
+}
+
+/* box bianco centrale che racchiude il modulo di login */
+.login-container {
+    background: white;
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1); 
+    width: 100%;
+    max-width: 420px; /* Evita che il form si allarghi troppo sui monitor grandi */
+}
+
+/* Sezione relativa ad "Accedi" */
+.login-container h1 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+/* Separatore per i singoli blocchi (email, password) */
+.login-campo {
+    margin-bottom: 18px;
+}
+
+/* Etichette sopra i campi di testo */
+.login-container label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* Stile per i campi di testo in input */
+.login-container input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+
+.login-container input:focus {
+    outline: none;
+    border-color: #007bff; 
+}
+
+/* Messaggio di successo dopo la registrazione o logout) */
+.messaggio-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    border-radius: 5px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Messaggio di errore creato in caso di credenziali errate sul server */
+.errore-server {
+    background: #fdecea;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+    border-radius: 5px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Pulsante di invio del modulo */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: #007bff; /* Sfondo blu principale */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.btn-submit:hover {
+    background: #0056b3;
+}
+
+/* Zona di testo che rimanda alla registrazione */
+.link-reg {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Stile per il link di registrazione */
+.link-reg a {
+    color: #007bff;
+    text-decoration: none;
+}

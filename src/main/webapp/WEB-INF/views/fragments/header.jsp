@@ -10,69 +10,55 @@
     Utente utenteLoggato = (Utente) session.getAttribute("utente");
 %>
 
-<header style="padding: 15px 30px; background: #ffffff; border-bottom: 1px solid #ddd;">
+<!-- Collegamento del foglio di stile in css -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
 
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+<header class="main-header">
+    <div class="header-container">
 
         <!-- Logo / nome sito -->
-        <!-- pageContext.request.contextPath serve a costruire URL corretti
-             in base al nome del progetto deployato su Tomcat -->
-        <a href="${pageContext.request.contextPath}/"
-           style="text-decoration: none; color: #333; font-size: 20px; font-weight: bold;">
-            TechHeaven
+		 <!-- pageContext.request.contextPath serve a costruire URL corretti in base al nome del progetto deployato su Tomcat -->
+        <a href="${pageContext.request.contextPath}/" class="logo-site">
+           TechHeaven
         </a>
 
         <!-- Menu di navigazione -->
-        <nav style="display: flex; gap: 15px; align-items: center;">
+        <nav class="nav-menu">
 
             <!-- Link sempre visibile -->
-            <a href="${pageContext.request.contextPath}/"
-               style="text-decoration: none; color: #333;">
-                Home
+            <a href="${pageContext.request.contextPath}/" class="nav-link">
+               Home
             </a>
+			<!-- se esiste un utente in sessione significa che il login è stato effettuato -->
+            <% if (utenteLoggato != null) { %>
 
-            <%
-                // Se esiste un utente in sessione, significa che il login è stato effettuato
-                if (utenteLoggato != null) {
-            %>
+                <!-- Link visibili solo all'utente autenticato -->
+                <a href="${pageContext.request.contextPath}/profilo" class="nav-link">
+                   Profilo
+                </a>
 
-            <!-- Link visibili solo all'utente autenticato -->
-            <a href="${pageContext.request.contextPath}/profilo"
-               style="text-decoration: none; color: #333;">
-                Profilo
-            </a>
-
-            <!-- Messaggio di benvenuto con nickname dell'utente -->
-            <span style="color: #333;">
+                <!-- Messaggio di benvenuto con nickname dell'utente-->
+                <span class="welcome-msg">
                     Ciao, <%= utenteLoggato.getNickname() %>
                 </span>
 
-            <!-- Link di logout -->
-            <a href="${pageContext.request.contextPath}/logout"
-               style="text-decoration: none; color: #c62828;">
-                Logout
-            </a>
+                <!-- Link di logout -->
+                <a href="${pageContext.request.contextPath}/logout" class="nav-link-logout">
+                   Logout
+                </a>
 
-            <%
-            } else {
-                // Se non esiste nessun utente in sessione,
-                // mostro i link per autenticarsi o registrarsi
-            %>
+            <% } else { %>
+				<!-- Se non esiste nessun utente in sessione, mostro i link per autenticarsi o registrarsi -->
+                <!-- Link visibili solo a chi NON è autenticato -->
+                <a href="${pageContext.request.contextPath}/login" class="nav-link-primary">
+                   Login
+                </a>
 
-            <!-- Link visibili solo a chi NON è autenticato -->
-            <a href="${pageContext.request.contextPath}/login"
-               style="text-decoration: none; color: #007bff;">
-                Login
-            </a>
+                <a href="${pageContext.request.contextPath}/registrazione" class="nav-link-primary">
+                   Registrati
+                </a>
 
-            <a href="${pageContext.request.contextPath}/registrazione"
-               style="text-decoration: none; color: #007bff;">
-                Registrati
-            </a>
-
-            <%
-                }
-            %>
+            <% } %>
 
         </nav>
     </div>
